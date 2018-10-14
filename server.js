@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const publicIp = require("public-ip");
 
 const app = express();
 
@@ -10,9 +11,10 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/views/index.html");
 });
 
-app.get("/api/me", (req, res) => {
+app.get("/api/me", async (req, res) => {
+  const ipAddress = await publicIp.v4();
   res.send({
-    ipAddress: req.ip,
+    ipAddress,
     language: req.headers["accept-language"],
     software: req.headers["user-agent"]
   });
