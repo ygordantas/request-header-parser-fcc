@@ -1,6 +1,5 @@
 const express = require("express");
 const cors = require("cors");
-const requestIP = require("request-ip");
 
 const app = express();
 
@@ -12,8 +11,8 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api/me", (req, res) => {
-  console.log(req.ips);
   res.send({
+    ipAddress: req.ip,
     language: req.headers["accept-language"],
     software: req.headers["user-agent"]
   });

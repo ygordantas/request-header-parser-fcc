@@ -9,8 +9,7 @@
   },
   "dependencies": {
     "cors": "^2.8.1",
-    "express": "^5.0.0-alpha.2",
-    "request-ip": "^2.1.1"
+    "express": "^5.0.0-alpha.2"
   },
   "engines": {
     "node": "10.7.0",
