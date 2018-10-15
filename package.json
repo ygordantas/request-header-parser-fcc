@@ -10,6 +10,8 @@
   "dependencies": {
     "cors": "^2.8.1",
     "express": "^5.0.0-alpha.2",
+    "ipaddr.js": "^1.8.1",
+    "proxy-addr": "^2.0.4",
     "public-ip": "^2.4.0"
   },
   "engines": {

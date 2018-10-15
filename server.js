@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const publicIp = require("public-ip");
+const proxyaddr = require("proxy-addr");
+const ipaddr = require("ipaddr.js");
 
 const app = express();
 
@@ -12,9 +14,11 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api/me", async (req, res) => {
-  const ipAddress = await publicIp.v4();
+ //const ipAddress = proxyaddr(req, ["loopback", "54.211.63.22"]);
+  //let test = ipaddr.parse(ipAddress).isIPv4MappedAddress();
+
   res.send({
-    ipAddress,
+    ipAddress: req.headers['X-Forwarded-For'],
     language: req.headers["accept-language"],
     software: req.headers["user-agent"]
   });
