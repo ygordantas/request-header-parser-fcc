@@ -12,9 +12,9 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api/me", async (req, res) => {
-  const ipAddress = await publicIp.v4();
   res.send({
-    ipAddress,
+    ipAddress:
+      req.connection["x-forwarded-for"] || req.connection.remoteAddress,
     language: req.headers["accept-language"],
     software: req.headers["user-agent"]
   });
