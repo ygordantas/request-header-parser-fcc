@@ -14,11 +14,13 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api/me", async (req, res) => {
- //const ipAddress = proxyaddr(req, ["loopback", "54.211.63.22"]);
+  //const ipAddress = proxyaddr(req, ["loopback", "54.211.63.22"]);
   //let test = ipaddr.parse(ipAddress).isIPv4MappedAddress();
+  let ip = req.headers["x-forwarded-for"];
+  let list = ip.split(",");
 
   res.send({
-    ipAddress: req.headers['X-Forwarded-For'],
+    ipAddress: list[list.length - 1],
     language: req.headers["accept-language"],
     software: req.headers["user-agent"]
   });
